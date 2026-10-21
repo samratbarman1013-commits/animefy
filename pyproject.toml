@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "animefy"
+version = "1.0.0"
+description = "Turn real video into anime / cartoon video."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "animefy" }]
+keywords = ["video", "anime", "cartoon", "stylization", "opencv", "animegan"]
+dependencies = [
+    "numpy>=1.23",
+    "opencv-python-headless>=4.6",
+    "imageio-ffmpeg>=0.4",
+]
+
+[project.optional-dependencies]
+web = ["gradio>=4.0"]
+neural = ["torch>=2.0"]
+
+[project.scripts]
+animefy = "animefy.cli:main"
+
+[tool.setuptools]
+packages = ["animefy", "animefy.styles"]
