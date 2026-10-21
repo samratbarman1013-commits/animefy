@@ -16,10 +16,10 @@ def _frame(seed=0):
 
 def test_styles_registered():
     names = {s["name"] for s in available_styles()}
-    assert {"cartoon", "anime", "neural"} <= names
+    assert {"cartoon", "anime", "comic", "sketch", "neural"} <= names
 
 
-@pytest.mark.parametrize("style", ["cartoon", "anime"])
+@pytest.mark.parametrize("style", ["cartoon", "anime", "comic", "sketch"])
 def test_engine_shapes_and_dtype(style):
     frames = [_frame(i) for i in range(5)]
     out = stylize_frames(frames, style=style)
@@ -29,7 +29,7 @@ def test_engine_shapes_and_dtype(style):
         assert b.dtype == np.uint8
 
 
-@pytest.mark.parametrize("style", ["cartoon", "anime"])
+@pytest.mark.parametrize("style", ["cartoon", "anime", "comic", "sketch"])
 def test_engine_changes_pixels(style):
     frames = [_frame(i) for i in range(5)]
     out = stylize_frames(frames, style=style, strength=1.0)
