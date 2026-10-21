@@ -7,12 +7,16 @@ from dataclasses import fields
 from .base import Style
 from .cartoon import CartoonStyle
 from .anime import AnimeStyle
+from .comic import ComicStyle
+from .sketch import SketchStyle
 from .neural import NeuralAnimeStyle
 
 #: name -> class. Add your own engine here to make it available everywhere.
 STYLES: dict[str, type[Style]] = {
     CartoonStyle.name: CartoonStyle,
     AnimeStyle.name: AnimeStyle,
+    ComicStyle.name: ComicStyle,
+    SketchStyle.name: SketchStyle,
     NeuralAnimeStyle.name: NeuralAnimeStyle,
 }
 
