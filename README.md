@@ -13,6 +13,8 @@ an optional PyTorch AnimeGANv2 model for the truest anime look.
 |-----------|---------------------------------------------------------|--------------------|---------------------------|
 | `cartoon` | Bold outlines + flat colours (classic cartoon)          | fast (~0.8s/frame @960×540) | nothing extra      |
 | `anime`   | Cel-shaded pastel look with soft line art               | fast (~0.4s/frame) | nothing extra             |
+| `comic`   | Heavy ink, few colours, high contrast (comic book)      | fast (~0.8s/frame) | nothing extra             |
+| `sketch`  | Pencil-sketch line art on paper                         | very fast (~0.2s/frame) | nothing extra        |
 | `neural`  | AnimeGANv2 — truest anime style                         | slow (~3s/frame)   | `torch` (+ auto weights)  |
 
 ## Install
@@ -48,6 +50,9 @@ animefy input.mp4 preview.mp4 --style cartoon --max-frames 48
 animefy --list-styles
 animefy --show-params anime
 ```
+
+Five styles ship in the box: `cartoon`, `anime`, `comic`, `sketch` and
+`neural`.
 
 `python -m animefy ...` works identically if you prefer not to install the
 console script.
