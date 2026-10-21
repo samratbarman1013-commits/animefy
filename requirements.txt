@@ -1,0 +1,8 @@
+# Core (CPU, no model downloads)
+numpy>=1.23
+opencv-python-headless>=4.6
+imageio-ffmpeg>=0.4
+
+# Web UI (optional):   pip install -r requirements.txt gradio
+# Neural engine (optional):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
