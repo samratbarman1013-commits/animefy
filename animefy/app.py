@@ -12,7 +12,7 @@ import tempfile
 from .pipeline import stylize_video
 
 #: styles offered by the web UI (neural is added only if torch is importable)
-_BASE_STYLES = ["cartoon", "anime"]
+_BASE_STYLES = ["cartoon", "anime", "comic", "sketch"]
 
 
 def _torch_available() -> bool:
@@ -27,10 +27,13 @@ def _params_for(style, strength, colors, detail, cel_bands, saturation,
                 pastel, edge_thickness, edge_amount, line_amount):
     """Map the shared UI sliders onto each engine's own parameter names."""
     params = {"strength": strength, "num_colors": int(colors)}
-    if style == "cartoon":
+    if style in ("cartoon", "comic"):
         params["stylize_scale"] = detail
         params["edge_thickness"] = int(edge_thickness)
         params["edge_amount"] = edge_amount
+    elif style == "sketch":
+        params["sigma_s"] = detail
+        params["colorize"] = line_amount
     elif style == "anime":
         params["smooth_scale"] = detail
         params["cel_bands"] = int(cel_bands)
