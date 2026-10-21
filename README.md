@@ -2,6 +2,9 @@
 
 Turn real, live video into **anime / cartoon** video.
 
+**Live demo (no install):** https://samratbarman1013-commits.github.io/animefy/
+— a browser-only version (cartoon + anime) that runs entirely on your device.
+
 `animefy` is a small, dependency-light toolkit with three pluggable style
 engines. Two of them run on plain CPU with no model downloads; the third is
 an optional PyTorch AnimeGANv2 model for the truest anime look.
