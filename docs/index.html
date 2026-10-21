@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>animefy — live video to anime / cartoon</title>
+<style>
+  :root { --bg:#0e1020; --panel:#181c33; --ink:#e8eaf6; --mut:#9aa0c3; --acc:#7c6cff; --acc2:#ff6ca8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.5 system-ui,Segoe UI,Roboto,sans-serif; background:
+        radial-gradient(1200px 600px at 10% -10%, #241a4d 0%, transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, #4a1c3d 0%, transparent 55%), var(--bg);
+        color:var(--ink); min-height:100vh; }
+  header { padding:28px 24px 8px; text-align:center; }
+  h1 { margin:0 0 6px; font-size:30px; letter-spacing:-.4px;
+       background:linear-gradient(90deg,var(--acc),var(--acc2)); -webkit-background-clip:text;
+       background-clip:text; color:transparent; }
+  header p { margin:0 auto; max-width:640px; color:var(--mut); }
+  main { max-width:1180px; margin:0 auto; padding:16px 24px 60px; }
+  .controls { display:flex; flex-wrap:wrap; gap:14px 22px; align-items:flex-end;
+              background:var(--panel); border:1px solid #2a2f52; border-radius:14px;
+              padding:16px 18px; margin:14px 0 20px; }
+  .ctl { display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--mut); }
+  .ctl b { color:var(--ink); font-weight:600; }
+  input[type=range] { width:140px; accent-color:var(--acc); }
+  select, button, .filebtn { font:inherit; color:var(--ink); background:#222748;
+              border:1px solid #343a63; border-radius:9px; padding:8px 12px; cursor:pointer; }
+  select:hover, button:hover, .filebtn:hover { border-color:var(--acc); }
+  button.primary { background:linear-gradient(90deg,var(--acc),var(--acc2)); border:none; color:#fff; font-weight:600; }
+  .filebtn { display:inline-block; }
+  .stage { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .stage figure { margin:0; background:var(--panel); border:1px solid #2a2f52; border-radius:14px; padding:12px; }
+  .stage h2 { margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); }
+  canvas { width:100%; height:auto; display:block; border-radius:8px; background:#0a0c18; }
+  .hint { color:var(--mut); font-size:13px; margin-top:14px; }
+  a.dl { color:var(--acc2); font-weight:600; }
+  @media (max-width:760px){ .stage{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<header>
+  <h1>animefy</h1>
+  <p>Turn live video into <b>anime / cartoon</b> video — right in your browser.
+     Everything runs on your device; nothing is uploaded.</p>
+</header>
+<main>
+  <section class="controls">
+    <label class="ctl">Style
+      <select id="style">
+        <option value="cartoon" selected>Cartoon (bold lines, flat colour)</option>
+        <option value="anime">Anime (cel-shaded, pastel)</option>
+      </select>
+    </label>
+    <label class="ctl">Smoothing <b id="v-smooth">2</b>
+      <input type="range" id="smooth" min="1" max="8" step="1" value="2"></label>
+    <label class="ctl">Colours <b id="v-colors">8</b>
+      <input type="range" id="colors" min="3" max="14" step="1" value="8"></label>
+    <label class="ctl">Line detail <b id="v-line">40</b>
+      <input type="range" id="line" min="8" max="140" step="1" value="40"></label>
+    <label class="ctl">Saturation <b id="v-sat">1.1</b>
+      <input type="range" id="sat" min="5" max="22" step="1" value="11"></label>
+    <label class="ctl">Source
+      <span><label class="filebtn">Choose video<input id="file" type="file" accept="video/*" hidden></label>
+      <button id="webcam" type="button">Use webcam</button></span>
+    </label>
+    <button id="record" class="primary" type="button" disabled>● Record</button>
+    <a id="download" class="dl" hidden download="animefy.webm">Download result</a>
+  </section>
+
+  <section class="stage">
+    <figure><h2>Original</h2><canvas id="src" width="640" height="360"></canvas></figure>
+    <figure><h2>Stylised</h2><canvas id="out" width="640" height="360"></canvas></figure>
+  </section>
+  <p class="hint">Pick a video or your webcam, tune the sliders, then <b>Record</b> to save a WebM
+     of the stylised clip. Tip: the anime style likes more smoothing and fewer colours.</p>
+</main>
+<video id="video" playsinline muted hidden></video>
+<script src="app.js"></script>
+</body>
+</html>
