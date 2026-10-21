@@ -19,7 +19,7 @@ Typical use::
 from .pipeline import stylize_video, stylize_frames
 from .styles import available_styles, get_style, STYLES
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __all__ = [
     "stylize_video",
     "stylize_frames",
